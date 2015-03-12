@@ -1,4 +1,4 @@
 Ballance
 ========
 
-** TODO: Add description **
+An Elixir project to make bank transactions using the actor model.
