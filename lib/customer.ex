@@ -11,6 +11,9 @@ defmodule Customer do
     send(Balance.pid, {self, :debit, value})
     receive do
       :ok -> IO.puts "take your money #{value}"
+      :no_ballance ->
+        IO.puts "Not enough ballance"
+        :failed
     end
   end
 
