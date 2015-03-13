@@ -1,6 +1,13 @@
 defmodule BalanceTest do
   use ExUnit.Case
 
+  def ballance_restart do
+    if Balance.pid do
+      Balance.stop
+    end
+    Balance.start
+  end
+
   test "it starts and finishes" do
     Balance.start
     assert Process.alive?(Balance.pid)
@@ -9,13 +16,13 @@ defmodule BalanceTest do
   end
 
   test "balance starts with 0.0" do
-    Balance.start
+    ballance_restart
     assert Customer.read_balance == 0.0
     Balance.stop
   end
 
   test "increases after deposit and decreases after withdrawal" do
-    Balance.start
+    ballance_restart
     Customer.deposit 500.0
     assert Customer.read_balance == 500.0
     Customer.withdrawal 100.0
