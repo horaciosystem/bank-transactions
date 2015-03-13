@@ -14,11 +14,16 @@ defmodule Balance do
     end
     loop(balance)
   end
-
+  def pid, do: Process.whereis(@name)
   def start do
     initial_balance = 0.0
     pid = spawn(__MODULE__, :loop, [initial_balance])
-    :global.register_name(@name, pid)
+    Process.register(pid, @name)
+  end
+
+  def stop do
+    Process.exit(pid(), :normal )
+    Process.unregister(@name)
   end
 
 end
