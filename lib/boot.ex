@@ -1,20 +1,23 @@
 Balance.start
-Enum.map(1..100,
-  fn(e) -> spawn_link(fn() ->
-    Customer.deposit(e * 2)
-    Customer.withdrawal(e)
-  end)
+Enum.map(1..10,
+  fn(e) ->
+    spawn_link(fn() ->
+      Customer.deposit(e * 2)
+    end)
+    spawn_link(fn() ->
+      Customer.withdrawal(e)
+    end)
 end)
 
-# Enum.map(1..10000,
+# Enum.map(1..100,
 #   fn(e) -> spawn_link(fn() ->
 #     Customer.withdrawal(e)
 #   end)
 # end)
-#
+
 # Enum.map(1..10000,
 #   fn(e) -> spawn_link(fn() ->
-#     Customer.deposit(e * 23)
+#     Customer.deposit(e)
 #   end)
 # end)
 
