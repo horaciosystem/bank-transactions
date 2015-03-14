@@ -24,8 +24,5 @@ end)
 :timer.sleep(1000)
 Customer.read_balance
 # Customer.deposit 10
-# Customer.read_ballance
 # Customer.deposit 100
-# Customer.read_ballance
 # Customer.withdrawal 40
-# Customer.read_ballance
